@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://www.aaa.com:8761/eureka/    # 指定注册中心的地址
+  instance:
+    preferIpAddress: true
+
+spring:
+    application:
+      name: scs-producer-cas    # 项目名称尽量用小写
+    cloud:
+      config:
+        discovery:
+          enabled: true
+          serviceId: SAMPLE-CONFIG
+        uri: http://config-server:8040/
+        profile: dev
+        label: master
