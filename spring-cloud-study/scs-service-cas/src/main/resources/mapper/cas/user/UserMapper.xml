@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.sample.spring.cloud.service.cas.user.mapper.UserMapper">
+  <select id="findUsers" resultType="com.xxx.sample.spring.cloud.model.cas.user.UserModel"
+          parameterType="com.xxx.sample.spring.cloud.model.cas.user.UserModel">
+      SELECT
+      t.id AS Id,
+      t.user_name AS userName,
+      t.user_pwd AS userPwd,
+      t.user_mobile AS userMobile,
+      t.login_name AS loginName
+      FROM user t
+    <where>
+      <if test="Id != null">and t.id = #{Id}</if>
+      <if test="userName != null">and t.user_name = #{userName}</if>
+      <if test="userPwd != null">and t.user_pwd = #{userPwd}</if>
+      <if test="userMobile != null">and t.user_mobile = #{userMobile}</if>
+      <if test="loginName != null">and t.login_name = #{loginName}</if>
+    </where>
+  </select>
+
+</mapper>
