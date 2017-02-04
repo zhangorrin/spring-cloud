@@ -14,7 +14,7 @@ spring:
           enabled: true                         # 默认false，设为true表示使用注册中心中的configserver配置而不自己配置configserver的uri
           serviceId: scs-config-server-eureka   # 指定config server在服务发现中的serviceId，默认为：configserver
         #uri: http://config-server:8040/
-        profile: prod
+        profile: dev
         label: master
 
 
