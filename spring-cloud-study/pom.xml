@@ -17,6 +17,8 @@
         <module>scs-hystrix-dashboard</module>
         <module>scs-hystrix-turbine</module>
         <module>scs-config-server</module>
+        <module>config-server-discovery-eureka</module>
+        <module>scs-config-server-discovery-eureka</module>
     </modules>
 
     <parent>
