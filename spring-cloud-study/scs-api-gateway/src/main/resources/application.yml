@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: scs-api-gateway
+server:
+  port: 9998
+eureka:
+  instance:
+    hostname: gateway
+  client:
+    serviceUrl:
+      defaultZone: http://www.aaa.com:8761/eureka/
