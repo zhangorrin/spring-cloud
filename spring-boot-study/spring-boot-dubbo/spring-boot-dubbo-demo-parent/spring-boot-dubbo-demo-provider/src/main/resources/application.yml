@@ -6,3 +6,8 @@ dubbo:
   protocol:
       name: dubbo
       port: 20887
+
+spring:
+  output:
+    ansi:
+      enabled: always
