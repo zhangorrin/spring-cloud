@@ -3,19 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>spring-boot-study</artifactId>
+        <artifactId>spring-boot-dubbo</artifactId>
         <groupId>com.xxx.sample.spring.boot</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>spring-boot-dubbo-autoconfig</module>
-        <module>spring-boot-dubbo-core</module>
-        <module>spring-boot-dubbo-demo-parent</module>
-    </modules>
+    <version>1.0-SNAPSHOT</version>
 
-    <artifactId>spring-boot-dubbo</artifactId>
+    <artifactId>spring-boot-dubbo-demo-parent</artifactId>
+
+    <modules>
+        <module>spring-boot-dubbo-demo-api</module>
+        <module>spring-boot-dubbo-demo-provider</module>
+        <module>spring-boot-dubbo-demo-consumer</module>
+    </modules>
 
     <properties>
         <com.101tec.zkclient.version>0.5</com.101tec.zkclient.version>
@@ -50,6 +52,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 </project>
