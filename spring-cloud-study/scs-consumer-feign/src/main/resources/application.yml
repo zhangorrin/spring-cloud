@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: scs-consumer-feign
+  output:
+    ansi:
+      enabled: always
 eureka:
   client:
     serviceUrl:

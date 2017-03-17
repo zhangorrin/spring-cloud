@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: scs-config-server
+  output:
+    ansi:
+      enabled: always
   cloud:
     config:
       server:

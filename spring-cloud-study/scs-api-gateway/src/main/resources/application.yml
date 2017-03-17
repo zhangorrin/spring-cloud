@@ -1,6 +1,9 @@
 spring:
   application:
     name: scs-api-gateway
+  output:
+    ansi:
+      enabled: always
 server:
   port: 9998
 eureka:

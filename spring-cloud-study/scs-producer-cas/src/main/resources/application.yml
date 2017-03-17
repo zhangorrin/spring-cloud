@@ -7,8 +7,12 @@ logging:
         com.xxx.sample.spring.cloud: debug
 
 spring:
-    messages:
-      encoding: UTF-8
+  messages:
+    encoding: UTF-8
+  output:
+    ansi:
+      enabled: always
+
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml

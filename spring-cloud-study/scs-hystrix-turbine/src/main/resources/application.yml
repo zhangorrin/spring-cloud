@@ -1,5 +1,8 @@
 spring:
   application.name: scs-hystrix-turbine
+  output:
+    ansi:
+      enabled: always
 server:
   port: 8031
 security.basic.enabled: false
