@@ -17,39 +17,5 @@
 
     <artifactId>spring-boot-dubbo</artifactId>
 
-    <properties>
-        <com.101tec.zkclient.version>0.5</com.101tec.zkclient.version>
-        <com.alibaba.dubbo.version>2.5.3</com.alibaba.dubbo.version>
-        <org.springframework.spring-context>4.3.3.RELEASE</org.springframework.spring-context>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${com.101tec.zkclient.version}</version>
-
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                </exclusions>
-
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${com.alibaba.dubbo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${org.springframework.spring-context}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
 </project>

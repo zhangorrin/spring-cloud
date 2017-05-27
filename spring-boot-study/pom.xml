@@ -9,13 +9,14 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-boot-dubbo</module>
+        <module>spring-boot-mybatis-mutil-datasource</module>
     </modules>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.3.RELEASE</version>
+        <version>1.5.1.RELEASE</version>
     </parent>
 
     <properties>
@@ -25,6 +26,73 @@
         <tk.mybatis.version>1.0.0</tk.mybatis.version>
         <pagehelper.version>1.0.0</pagehelper.version>
         <mybatis-spring-boot.version>1.2.0</mybatis-spring-boot.version>
+
+        <com.101tec.zkclient.version>0.5</com.101tec.zkclient.version>
+        <com.alibaba.dubbo.version>2.5.3</com.alibaba.dubbo.version>
+        <org.springframework.spring-context>4.3.3.RELEASE</org.springframework.spring-context>
+
+        <mysql-connector>5.1.39</mysql-connector>
+        <druid>1.0.18</druid>
+
+        <spring.version>4.3.8.RELEASE</spring.version>
     </properties>
 
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${com.101tec.zkclient.version}</version>
+
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${com.alibaba.dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${org.springframework.spring-context}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+
+            <!-- MySQL 连接驱动依赖 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector}</version>
+            </dependency>
+
+            <!-- Druid 数据连接池依赖 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 </project>

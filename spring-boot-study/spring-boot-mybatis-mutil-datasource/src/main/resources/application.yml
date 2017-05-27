@@ -1,0 +1,32 @@
+
+
+## master 数据源配置
+master:
+  datasource:
+      name: spring-cloud-study
+      url: jdbc:mysql://192.168.146.128:33060/demo2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+
+## cluster 数据源配置
+cluster:
+  datasource:
+      name: spring-cloud-study
+      url: jdbc:mysql://192.168.146.128:33060/demo1?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+
+server:
+  port: 8080
+
+
+logging:
+    level:
+        java.sql: debug
+        com.xxx.sample: debug
+
+mybatis:
+  mapperLocations: classpath:mapper/**/*.xml
+  typeAliasesPackage: com.xxx.sample.spring.boot.muti.ds.domain
