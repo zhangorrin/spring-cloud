@@ -1,0 +1,29 @@
+spring:
+  redis:
+    database: 5
+    host: 10.66.1.41
+    port: 6379
+    timeout: 0
+    password:
+    pool:
+      max-active: 1000
+      min-idle: 1
+      max-idle: 100
+      max-wait: 1
+  freemarker:
+    cache: false
+    charset: UTF-8
+    suffix: .ftl
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    template-loader-path: classpath:/templates/
+    check-template-location: true
+
+
+application:
+    id: test-shiro
+
+server:
+  port: 8080
