@@ -28,4 +28,12 @@ public class LoginController {
 		return "login";
 	}
 
+	@RequestMapping(path = {"/","/index"})
+	public String index(Model model) {
+		model.addAttribute("title", "测试标题");
+		model.addAttribute("content", "测试内容");
+		model.addAttribute("extraInfo", "额外信息，只对管理员显示");
+		return "index";
+	}
+
 }

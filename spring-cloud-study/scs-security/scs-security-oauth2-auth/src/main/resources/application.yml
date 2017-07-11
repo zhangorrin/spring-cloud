@@ -14,8 +14,6 @@ spring:
 
   thymeleaf:
     cache: false
-  resources:
-    static-locations: classpath:/css/
 
 server:
   port: 10000
