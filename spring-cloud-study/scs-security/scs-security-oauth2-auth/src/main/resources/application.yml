@@ -1,0 +1,29 @@
+
+
+## 数据源配置
+spring:
+  datasource:
+      name: spring-cloud-study
+      url: jdbc:mysql://192.168.146.128:33060/spring-security-study?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    database: mysql
+
+  thymeleaf:
+    cache: false
+  resources:
+    static-locations: classpath:/css/
+
+server:
+  port: 10000
+  context-path: /authserver
+
+
+logging:
+    level:
+        java.sql: debug
+        com.xxx.sample: debug
+        org.springframework.security: debug

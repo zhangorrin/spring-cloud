@@ -11,6 +11,7 @@
         <module>spring-boot-dubbo</module>
         <module>spring-boot-mybatis-mutil-datasource</module>
         <module>spring-boot-shiro</module>
+        <module>orrin-com-spring-boot-secure</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -20,6 +21,10 @@
         <version>1.5.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <organization>
+        <name>Orrin.Zhang</name>
+    </organization>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

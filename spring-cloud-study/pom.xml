@@ -19,6 +19,7 @@
         <module>scs-config-server-discovery-eureka</module>
         <module>scs-producer-cas</module>
         <module>scs-api-gateway</module>
+        <module>scs-security</module>
     </modules>
 
     <parent>

@@ -1,6 +1,7 @@
 package com.orrin.springboot.shiro.controller;
 
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping(value = "/pages")
 public class IndexController {
+
+	@Value("${spring.redis.host}")
+	private String redisHost;
+
+	@Value("${spring.redis.port}")
+	private String redisPort;
+
+	@Value("${spring.redis.timeout}")
+	private String redisTimeout;
+
+	@Value("${spring.redis.password}")
+	private String redisPassword;
+
+
+	@Value("${application.id}")
+	private String applicationId;
 
 	@RequestMapping(value = "/login")
 	public String showLoginForm(HttpServletRequest req, HttpServletResponse response, Model model) {
