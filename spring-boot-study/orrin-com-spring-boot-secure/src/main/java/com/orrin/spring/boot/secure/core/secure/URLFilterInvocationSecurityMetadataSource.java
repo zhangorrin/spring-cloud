@@ -28,7 +28,7 @@ import java.util.Set;
  */
 public class URLFilterInvocationSecurityMetadataSource  implements FilterInvocationSecurityMetadataSource,InitializingBean {
 
-	private static final Logger logger = LoggerFactory.getLogger(SimpleLoginSuccessHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(URLFilterInvocationSecurityMetadataSource.class);
 
 	private final static List<ConfigAttribute> NULL_CONFIG_ATTRIBUTE = Collections.emptyList();
 
@@ -80,6 +80,11 @@ public class URLFilterInvocationSecurityMetadataSource  implements FilterInvocat
 		this.requestMap = this.bindRequestMap();
 	}
 
+
+	/**
+	 * 获取到url地址和AUTH_**这种权限标识，注意：不是权限ID和资源ID
+	 * @return
+	 */
 	private List<Map<String,String>> getURLResourceMapping(){
 		List<Map<String,String>> list = sysResourcesRepository.findAuthResources();
 		return list;
