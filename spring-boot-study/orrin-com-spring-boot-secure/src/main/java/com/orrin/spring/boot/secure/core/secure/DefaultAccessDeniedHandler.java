@@ -1,5 +1,7 @@
 package com.orrin.spring.boot.secure.core.secure;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -16,6 +18,7 @@ import java.io.IOException;
  */
 public class DefaultAccessDeniedHandler implements AccessDeniedHandler {
 
+	private static final Logger logger = LoggerFactory.getLogger(DefaultAccessDeniedHandler.class);
 	/* (non-Javadoc)
 	 * @see org.springframework.security.web.access.AccessDeniedHandler#handle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.access.AccessDeniedException)
 	 */
@@ -69,6 +72,7 @@ public class DefaultAccessDeniedHandler implements AccessDeniedHandler {
 			throw new IllegalArgumentException("errorPage must begin with '/'");
 		}
 
+		logger.info("init DefaultAccessDeniedHandler , errorPage = {}", errorPage);
 		this.errorPage = errorPage;
 	}
 

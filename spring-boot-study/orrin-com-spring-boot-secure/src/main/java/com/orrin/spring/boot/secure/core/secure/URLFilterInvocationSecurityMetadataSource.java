@@ -13,15 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Orrin on 2017/7/12.
@@ -86,7 +78,19 @@ public class URLFilterInvocationSecurityMetadataSource  implements FilterInvocat
 	 * @return
 	 */
 	private List<Map<String,String>> getURLResourceMapping(){
-		List<Map<String,String>> list = sysResourcesRepository.findAuthResources();
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+
+		List<Object[]> result  = sysResourcesRepository.findAuthResources();
+		Iterator<Object[]> it = result.iterator();
+
+		while(it.hasNext()){
+			Object[] o = it.next();
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("resourcePath", (String)o[0]);
+			map.put("authorityMark", (String)o[1]);
+			list.add(map);
+		}
+
 		return list;
 	}
 

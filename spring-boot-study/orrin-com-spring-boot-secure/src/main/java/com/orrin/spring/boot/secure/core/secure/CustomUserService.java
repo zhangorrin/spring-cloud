@@ -1,15 +1,14 @@
 package com.orrin.spring.boot.secure.core.secure;
 
+import com.orrin.spring.boot.secure.dao.SysAuthoritiesRepository;
+import com.orrin.spring.boot.secure.domain.SysAuthorities;
 import com.orrin.spring.boot.secure.domain.SysUsers;
-import com.orrin.spring.boot.secure.domain.SysUsersRoles;
-import com.orrin.spring.boot.secure.service.SysUsersRolesService;
 import com.orrin.spring.boot.secure.service.SysUsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +28,7 @@ public class CustomUserService implements UserDetailsService {
 	private SysUsersService sysUsersService;
 
 	@Autowired
-	private SysUsersRolesService sysUsersRolesService;
+	private SysAuthoritiesRepository sysAuthoritiesRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,11 +40,11 @@ public class CustomUserService implements UserDetailsService {
 
 		logger.info("username:" + username);
 
-		List<SysUsersRoles> sysUsersRoles = sysUsersRolesService.findDistinctByUserId(sysUser.getUserId());
+		List<SysAuthorities> sysAuthorities = sysAuthoritiesRepository.findAuthorityByUserId(sysUser.getUserId());
 
-		CurrentSessionUser currentSessionUser = CurrentSessionUser.createCurrentSessionUser(sysUser, sysUsersRoles);
+		CurrentSessionUser currentSessionUser = CurrentSessionUser.createCurrentSessionUser(sysUser, sysAuthorities);
 
-		if(currentSessionUser.isAccountNonLocked()){
+		if(!currentSessionUser.isAccountNonLocked()){
 			throw new LockedException("账号被锁定");
 		}
 
@@ -53,17 +52,12 @@ public class CustomUserService implements UserDetailsService {
 			throw new DisabledException("账号不可用");
 		}
 
-		if(currentSessionUser.isCredentialsNonExpired()){
-			throw new BadCredentialsException("坏的凭据");
+		if(!currentSessionUser.isCredentialsNonExpired()){
+			throw new BadCredentialsException("证书过期");
 		}
 
-
-		if(currentSessionUser.isAccountNonExpired()){
+		if(!currentSessionUser.isAccountNonExpired()){
 			throw new AccountExpiredException("账户过期");
-		}
-
-		if(currentSessionUser.isCredentialsNonExpired()){
-			throw new CredentialsExpiredException("证书过期");
 		}
 
 		return currentSessionUser;

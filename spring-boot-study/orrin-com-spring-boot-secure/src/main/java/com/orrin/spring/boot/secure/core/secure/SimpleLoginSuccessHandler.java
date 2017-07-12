@@ -24,7 +24,7 @@ public class SimpleLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		CurrentSessionUser userDetails = (CurrentSessionUser)authentication.getPrincipal();
        /* Set<SysRole> roles = userDetails.getSysRoles();*/
 		//输出登录提示信息
-		logger.info("账号：" + userDetails.getName() + " 登录");
+		logger.info("账号：" + userDetails.getName() + " 登录成功!");
 
 		logger.info("IP :"+getIpAddress(request));
 

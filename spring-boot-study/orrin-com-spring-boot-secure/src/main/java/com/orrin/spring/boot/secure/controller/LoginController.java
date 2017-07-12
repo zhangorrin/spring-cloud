@@ -6,6 +6,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,6 +27,12 @@ public class LoginController {
 		}
 
 		return "login";
+	}
+
+	@RequestMapping("/securityException/accessDenied")
+	@ResponseBody
+	public String accessDenied(HttpServletRequest request, Model model) {
+		return "没有访问权限";
 	}
 
 }

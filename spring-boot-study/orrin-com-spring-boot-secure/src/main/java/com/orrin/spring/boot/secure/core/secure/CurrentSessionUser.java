@@ -1,7 +1,7 @@
 package com.orrin.spring.boot.secure.core.secure;
 
+import com.orrin.spring.boot.secure.domain.SysAuthorities;
 import com.orrin.spring.boot.secure.domain.SysUsers;
-import com.orrin.spring.boot.secure.domain.SysUsersRoles;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -39,17 +39,17 @@ public class CurrentSessionUser implements UserDetails {
 
 	private Long credentialsNonExpired;
 
-	private List<SysUsersRoles> roles;
+	private List<SysAuthorities> sysAuthorities;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> auths = new ArrayList<>();
-		List<SysUsersRoles> roles = this.getRoles();
+		List<SysAuthorities> authoritiesTemp = this.getSysAuthorities();
 		Set<String> nonRepetitionSet = new HashSet<>();
-		for (SysUsersRoles role : roles) {
-			if(!nonRepetitionSet.contains(role.getRoleId())){
-				nonRepetitionSet.add(role.getRoleId());
-				auths.add(new SimpleGrantedAuthority(role.getRoleId()));
+		for (SysAuthorities sas : authoritiesTemp) {
+			if(!nonRepetitionSet.contains(sas.getAuthorityMark())){
+				nonRepetitionSet.add(sas.getAuthorityMark());
+				auths.add(new SimpleGrantedAuthority(sas.getAuthorityMark()));
 			}
 		}
 		return auths;
@@ -67,24 +67,23 @@ public class CurrentSessionUser implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return this.accountNonExpired.equals(0) ? false : true;
+		return this.accountNonExpired.equals(Long.valueOf(0)) ? false : true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return this.accountNonLocked.equals(0) ? false : true;
+		return this.accountNonLocked.equals(Long.valueOf(0)) ? false : true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return this.credentialsNonExpired.equals(0) ? false : true;
+		return this.credentialsNonExpired.equals(Long.valueOf(0)) ? false : true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return this.enabled.equals(0) ? false : true;
+		return this.enabled.equals(Long.valueOf(0)) ? false : true;
 	}
-
 	public String getUserId() {
 		return userId;
 	}
@@ -153,22 +152,22 @@ public class CurrentSessionUser implements UserDetails {
 		return credentialsNonExpired;
 	}
 
+	public List<SysAuthorities> getSysAuthorities() {
+		return sysAuthorities;
+	}
+
+	public void setSysAuthorities(List<SysAuthorities> sysAuthorities) {
+		this.sysAuthorities = sysAuthorities;
+	}
+
 	public void setCredentialsNonExpired(Long credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
-	public List<SysUsersRoles> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<SysUsersRoles> roles) {
-		this.roles = roles;
-	}
-
-	public static CurrentSessionUser createCurrentSessionUser(SysUsers sysUsers, List<SysUsersRoles> roles){
+	public static CurrentSessionUser createCurrentSessionUser(SysUsers sysUsers, List<SysAuthorities> authorities){
 		CurrentSessionUser sessionUser = new CurrentSessionUser();
 		BeanUtils.copyProperties(sysUsers,sessionUser);
-		sessionUser.setRoles(roles);
+		sessionUser.setSysAuthorities(authorities);
 		return sessionUser;
 	}
 }
