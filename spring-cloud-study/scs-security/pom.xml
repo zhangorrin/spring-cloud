@@ -8,15 +8,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>${parent.version}</version>
 
     <artifactId>scs-security</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>scs-security-oauth2</module>
         <module>scs-security-oauth2-auth</module>
-        <module>scs-security-oauth2-resource</module>
         <module>scs-security-oauth2-client</module>
     </modules>
 
